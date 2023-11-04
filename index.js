@@ -12,7 +12,6 @@ async function getLevels() {
     let response = await axios.get(url + "?page=" + page)
     console.log(response.data.totalUsersCount)
     while (response.data.totalUsersCount > 0) {
-        console.log("a")
         levels = levels.concat(response.data.users)
         page++
         response = await axios.get(url + "?page=" + page)
@@ -21,7 +20,6 @@ async function getLevels() {
 }
 
 getLevels().then(levels => {
-    console.log(levels.length)
     levels.forEach(level => {
         if(level.level < 1) return
         console.log(level.username + " " + level.level + " " + level.currentLevelXp)
